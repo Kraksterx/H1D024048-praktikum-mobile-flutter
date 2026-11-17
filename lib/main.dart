@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/produk_page.dart';
+import 'package:flutter_pengmob/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Pengmob',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const ProdukPage(),
-    );
+    return const MaterialApp(title: 'Flutter Menu', home: LoginPage());
   }
 }
