@@ -1,75 +1,92 @@
 import 'package:flutter/material.dart';
+import '../model/produk.dart';
+import 'produk_detail.dart';
 import 'produk_form.dart';
 
 class ProdukPage extends StatefulWidget {
-  const ProdukPage({super.key});
+  const ProdukPage({Key? key}) : super(key: key);
 
   @override
-  State<ProdukPage> createState() => _ProdukPageState();
+  _ProdukPageState createState() => _ProdukPageState();
 }
 
 class _ProdukPageState extends State<ProdukPage> {
-  final List<Map<String, String>> _produkList = [
-    {
-      'nama': 'Produk 1',
-      'harga': '10000',
-      'deskripsi': 'Deskripsi produk 1',
-    },
-    {
-      'nama': 'Produk 2',
-      'harga': '20000',
-      'deskripsi': 'Deskripsi produk 2',
-    },
-    {
-      'nama': 'Produk 3',
-      'harga': '30000',
-      'deskripsi': 'Deskripsi produk 3',
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Daftar Produk'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
-      body: ListView.builder(
-        itemCount: _produkList.length,
-        itemBuilder: (context, index) {
-          final produk = _produkList[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ListTile(
-              leading: const Icon(Icons.shopping_bag),
-              title: Text(produk['nama']!),
-              subtitle: Text('Rp ${produk['harga']}'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailProdukPage(
-                      namaProduk: produk['nama']!,
-                      hargaProduk: produk['harga']!,
-                      deskripsi: produk['deskripsi']!,
-                    ),
-                  ),
-                );
+        title: const Text('List Produk'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              child: const Icon(Icons.add, size: 26.0),
+              onTap: () async {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProdukForm()));
               },
             ),
-          );
-        },
+          )
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text('Logout'),
+              trailing: const Icon(Icons.logout),
+              onTap: () async {},
+            )
+          ],
+        ),
+      ),
+      body: ListView(
+        children: [
+          ItemProduk(
+              produk: Produk(
+                  id: 1,
+                  kodeProduk: 'A001',
+                  namaProduk: 'Kamera',
+                  hargaProduk: 5000000)),
+          ItemProduk(
+              produk: Produk(
+                  id: 2,
+                  kodeProduk: 'A002',
+                  namaProduk: 'Kulkas',
+                  hargaProduk: 2500000)),
+          ItemProduk(
+              produk: Produk(
+                  id: 3,
+                  kodeProduk: 'A003',
+                  namaProduk: 'Mesin Cuci',
+                  hargaProduk: 2000000)),
+        ],
+      ),
+    );
+  }
+}
+
+class ItemProduk extends StatelessWidget {
+  final Produk produk;
+
+  const ItemProduk({Key? key, required this.produk}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ProdukForm()),
-          );
-        },
-        tooltip: 'Tambah Produk',
-        child: const Icon(Icons.add),
+            MaterialPageRoute(
+                builder: (context) => ProdukDetail(
+                      produk: produk,
+                    )));
+      },
+      child: Card(
+        child: ListTile(
+          title: Text(produk.namaProduk!),
+          subtitle: Text(produk.hargaProduk.toString()),
+        ),
       ),
     );
   }
