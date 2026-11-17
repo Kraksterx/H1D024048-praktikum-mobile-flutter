@@ -1,17 +1,10 @@
-# flutter_pengmob
+# Nama       : Nathanael Jovan Wahyudi
+# NIM        : H1D024048  
+# SHIFT KRS  : F
+# SHIFT BARU : F
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# TUGAS 3
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/a431665d-c10e-47a7-8ed7-d3420747115f" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/6069f44e-85f6-43fe-8ac7-b54e98e91f4b" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/79fa2bf9-a056-4242-89a1-103f2baeb379" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/8ddc5202-42b1-4d65-b723-6a01bab1c166" />
