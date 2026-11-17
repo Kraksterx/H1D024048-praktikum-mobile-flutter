@@ -8,3 +8,8 @@
 <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/6069f44e-85f6-43fe-8ac7-b54e98e91f4b" />
 <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/79fa2bf9-a056-4242-89a1-103f2baeb379" />
 <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/8ddc5202-42b1-4d65-b723-6a01bab1c166" />
+
+# TUGAS 4
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/f3b46453-ca53-496a-9c83-46215d0cd952" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/bd16a7eb-3715-45c7-9c43-18dd70e91d44" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/7fb1bbc0-95a8-4744-9311-3d6d81a11911" />
