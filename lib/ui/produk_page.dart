@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import '../model/produk.dart';
-import 'produk_detail.dart';
-import 'produk_form.dart';
+import 'package:flutter_pengmob/bloc/logout_bloc.dart';
+import 'package:flutter_pengmob/bloc/produk_bloc.dart';
+import 'package:flutter_pengmob/model/produk.dart';
+import 'package:flutter_pengmob/ui/login_page.dart';
+import 'package:flutter_pengmob/ui/produk_detail.dart';
+import 'package:flutter_pengmob/ui/produk_form.dart';
 
 class ProdukPage extends StatefulWidget {
   const ProdukPage({Key? key}) : super(key: key);
 
   @override
-  _ProdukPageState createState() => _ProdukPageState();
+  State<ProdukPage> createState() => _ProdukPageState();
 }
 
 class _ProdukPageState extends State<ProdukPage> {
@@ -16,18 +19,6 @@ class _ProdukPageState extends State<ProdukPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('List Produk'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              child: const Icon(Icons.add, size: 26.0),
-              onTap: () async {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProdukForm()));
-              },
-            ),
-          )
-        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -35,33 +26,54 @@ class _ProdukPageState extends State<ProdukPage> {
             ListTile(
               title: const Text('Logout'),
               trailing: const Icon(Icons.logout),
-              onTap: () async {},
+              onTap: () async {
+                await LogoutBloc.logout();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
+              },
             )
           ],
         ),
       ),
-      body: ListView(
-        children: [
-          ItemProduk(
-              produk: Produk(
-                  id: 1,
-                  kodeProduk: 'A001',
-                  namaProduk: 'Kamera',
-                  hargaProduk: 5000000)),
-          ItemProduk(
-              produk: Produk(
-                  id: 2,
-                  kodeProduk: 'A002',
-                  namaProduk: 'Kulkas',
-                  hargaProduk: 2500000)),
-          ItemProduk(
-              produk: Produk(
-                  id: 3,
-                  kodeProduk: 'A003',
-                  namaProduk: 'Mesin Cuci',
-                  hargaProduk: 2000000)),
-        ],
+      body: FutureBuilder<List<Produk>>(
+        future: ProdukBloc.getProduks(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print(snapshot.error);
+          }
+          return snapshot.hasData
+              ? ListProduk(list: snapshot.data)
+              : const Center(child: CircularProgressIndicator());
+        },
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ProdukForm()),
+          );
+          setState(() {});
+        },
+      ),
+    );
+  }
+}
+
+class ListProduk extends StatelessWidget {
+  final List<Produk>? list;
+
+  const ListProduk({Key? key, this.list}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: list == null ? 0 : list!.length,
+      itemBuilder: (context, i) {
+        return ItemProduk(produk: list![i]);
+      },
     );
   }
 }
@@ -76,11 +88,11 @@ class ItemProduk extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProdukDetail(
-                      produk: produk,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProdukDetail(produk: produk),
+          ),
+        );
       },
       child: Card(
         child: ListTile(

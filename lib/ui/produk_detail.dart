@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import '../model/produk.dart';
-import 'produk_form.dart';
+import 'package:flutter_pengmob/bloc/produk_bloc.dart';
+import 'package:flutter_pengmob/model/produk.dart';
+import 'package:flutter_pengmob/ui/produk_form.dart';
+import 'package:flutter_pengmob/ui/produk_page.dart';
 
 class ProdukDetail extends StatefulWidget {
-  Produk? produk;
+  final Produk? produk;
 
-  ProdukDetail({Key? key, this.produk}) : super(key: key);
+  const ProdukDetail({Key? key, this.produk}) : super(key: key);
 
   @override
-  _ProdukDetailState createState() => _ProdukDetailState();
+  State<ProdukDetail> createState() => _ProdukDetailState();
 }
 
 class _ProdukDetailState extends State<ProdukDetail> {
@@ -16,7 +18,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Produk'),
+        title: const Text("Detail Produk"),
       ),
       body: Center(
         child: Column(
@@ -27,11 +29,11 @@ class _ProdukDetailState extends State<ProdukDetail> {
             ),
             Text(
               "Nama : ${widget.produk!.namaProduk}",
-              style: const TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 20.0),
             ),
             Text(
               "Harga : Rp. ${widget.produk!.hargaProduk.toString()}",
-              style: const TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 20.0),
             ),
             _tombolHapusEdit(),
           ],
@@ -48,11 +50,11 @@ class _ProdukDetailState extends State<ProdukDetail> {
           child: const Text("EDIT"),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ProdukForm(
-                          produk: widget.produk!,
-                        )));
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProdukForm(produk: widget.produk),
+              ),
+            );
           },
         ),
         OutlinedButton(
@@ -69,7 +71,14 @@ class _ProdukDetailState extends State<ProdukDetail> {
       actions: [
         OutlinedButton(
           child: const Text("Ya"),
-          onPressed: () {},
+          onPressed: () {
+            ProdukBloc.deleteProduk(id: widget.produk!.id).then((value) {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const ProdukPage()),
+                (route) => false,
+              );
+            });
+          },
         ),
         OutlinedButton(
           child: const Text("Batal"),
@@ -77,7 +86,6 @@ class _ProdukDetailState extends State<ProdukDetail> {
         ),
       ],
     );
-
-    showDialog(builder: (context) => alertDialog, context: context);
+    showDialog(context: context, builder: (context) => alertDialog);
   }
 }
