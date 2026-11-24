@@ -13,3 +13,9 @@
 <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/f3b46453-ca53-496a-9c83-46215d0cd952" />
 <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/bd16a7eb-3715-45c7-9c43-18dd70e91d44" />
 <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/7fb1bbc0-95a8-4744-9311-3d6d81a11911" />
+
+# TUGAS 5
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/6926c0f9-016c-43ad-b7ee-7cbd6a96a34d" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/0873e7a3-864f-47c5-bf98-9aefee188665" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/df1d092c-a68b-4fb4-b6ca-a0af750ced0a" />
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/6b4e5181-4ab7-428e-b080-6f0f52d38960" />
